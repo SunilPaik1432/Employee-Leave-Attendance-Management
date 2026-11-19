@@ -1,0 +1,6 @@
+@model Dashboard
+<section class="actions"><form method="post" asp-action="Attendance"><h2>My attendance</h2><button name="actionType" value="in">Check in</button> <button name="actionType" value="out">Check out</button></form>
+<form method="post" asp-action="RequestLeave"><h2>Request leave</h2><label>From<input type="date" name="start" required></label><label>To<input type="date" name="end" required></label><label>Reason<textarea name="reason" maxlength="250" required></textarea></label><button>Submit request</button></form>
+@if (Context.Session.GetString("role") is "HR" or "Manager")
+{<form method="post" asp-action="Decision"><h2>Review leave</h2><label>Request ID<input name="id" type="number" min="1" required></label><button name="decision" value="approve">Approve</button> <button name="decision" value="reject">Reject</button></form>}</section>
+<partial name="_Grids" model="Model" />

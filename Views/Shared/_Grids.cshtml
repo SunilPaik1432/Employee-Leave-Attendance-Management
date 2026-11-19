@@ -1,0 +1,25 @@
+@model Dashboard
+@foreach (var grid in Model.Grids)
+{
+<section class="panel"><h2>@grid.Title <small>@grid.Rows.Count</small></h2>
+@if(grid.Rows.Count==0){<p class="hint">No records yet.</p>}
+else
+{
+<div class="scroll"><table><thead><tr>
+@foreach(var column in grid.Rows[0].Keys){<th scope="col">@column</th>}
+</tr></thead><tbody>
+@foreach(var row in grid.Rows)
+{
+<tr>@foreach(var field in row)
+{
+<td>
+
+@(field.Value is DateTime date ? date.ToString(field.Key.EndsWith("Utc") ? "yyyy-MM-dd HH:mm 'UTC'" : "yyyy-MM-dd") : field.Value ?? "—")
+
+</td>
+}</tr>
+}
+</tbody></table></div>
+}
+</section>
+}

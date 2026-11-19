@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Employee Leave &amp; Attendance Management System</title>
+<link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script></head>
+<body><header><nav><a class="brand" asp-action="Index">Workday Desk</a>
+@if(Context.Session.GetString("role") is { } role)
+{ <form class="logout" asp-action="Logout" method="post"><span>@role</span><button>Sign out</button></form> }</nav></header>
+<main><div class="hero"><span>Attendance, leave approvals and HR reporting</span><h1>Employee Leave &amp; Attendance Management System</h1></div>
+@if(TempData["Feedback"] is string feedback){<p class="notice" role="status">@feedback</p>}
+@RenderBody()</main></body></html>
